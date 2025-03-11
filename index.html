@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Bank - Organize Your Study Materials</title>
+    <link rel="shortcut icon" href="img2.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+        emailjs.init("Mfq5kN55ctRpCJ72p");
+      })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #00BFFF;
+            --accent: #FF1493;
+            --bg-dark: #121212;
+            --bg-card: #1E1E1E;
+            --text: #FFFFFF;
+            --text-muted: #AAAAAA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: rgba(18, 18, 18, 0.9); /* Dark background with transparency */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary); /* Use your primary color variable */
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 60px; /* Space between links */
+            justify-content: space-between;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #FFFFFF; /* White text color */
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary); /* Change color on hover */
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 50px;
+            flex-direction: column;
+        }
+        
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 80%;
+            text-align: center;
+            margin: 20px auto; /* Reduced top margin */
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 12px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            max-width: 150px;
+            text-align: center;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.6);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: -1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: rgba(30, 30, 30, 0.5);
+            position: relative;
+        }
+        
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step-card {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .step-icon {
+            font-size: 40px;
+            margin: 20px 0;
+            color: var(--accent);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background-color: rgba(30, 30, 30, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .popular {
+            position: relative;
+        }
+        
+        .popular::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+        
+        .plan-name {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+        
+        .pricing-features {
+            margin-bottom: 25px;
+            list-style: none;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-form {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .support-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .security-note {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .security-note i {
+            font-size: 24px;
+            margin-right: 15px;
+            color: var(--secondary);
+        }
+        
+        .security-note p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.4s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: var(--primary);
+        }
+        
+        .success-icon {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        /* Animation Effects */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animated {
+            animation: fadeInUp 1s ease;
+        }
+        
+        /* Loader */
+        .loader-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader {
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+
+        .img{
+            border-radius:10%;
+            max-width: 100%;
+            width:24%;
+            height: auto;
+            margin-top: 20px; 
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            .img{
+                width:50%;
+            }
+            
+            .nav-links {
+                gap: 30px; /* Space between links for medium screens */
+            }
+            
+           
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .steps-container {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 50px auto 0;
+            }
+            
+            .hero {
+                flex-direction: column;
+            }
+            
+            .navbar {
+                flex-direction: column; /* Stack items vertically */
+                align-items: flex-start; /* Align items to the start */
+            }
+            
+            .nav-links {
+                flex-direction: row; /* Keep links in a horizontal line */
+                gap: 25px; /* Space between links for smaller screens */
+                margin-top: 10px; /* Space above the links */
+            }
+            
+            .nav-links a {
+                padding: 10px 15px; /* Add padding for better touch targets */
+                text-align: center; /* Center text */
+            }
+            .img{
+                width:50%;
+            }
+            
+           
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+            .logo span {
+                font-size: 20px; /* Adjust logo text size */
+            }
+            .nav-links a {
+                font-size: 16px; /* Adjust link text size */
+            }
+            .img{
+                width:50%;
+            }
+            .nav-links {
+                gap: 15px; /* Further reduce gap for smaller screens */
+            }
+        }
+
+        /* Mobile Navigation Styles */
+        .mobile-nav {
+            display: flex;
+            justify-content: center; /* Center the navigation links */
+            background-color: rgba(18, 18, 18, 0.9); /* Same background as the navbar */
+            padding: 10px 0; /* Padding for the mobile nav */
+        }
+
+        .mobile-nav .nav-links {
+            list-style: none;
+            display: flex; /* Display links in a horizontal line */
+            gap: 20px; /* Space between links */
+        }
+
+        .mobile-nav .nav-links a {
+            text-decoration: none;
+            color: #FFFFFF; /* White text color */
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+        }
+
+        .mobile-nav .nav-links a:hover {
+            color: var(--primary); /* Change color on hover */
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                  <i class="fas fa-book-open" style="color: var(--primary);"></i>
+                    <span>Question-Bank</span>
+                </div>
+            </nav>
+            <!-- New Header for Navigation Links -->
+            <nav class="mobile-nav">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#features">Features</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animated">
+                <h1>Organize Your Study Materials</h1>
+                <p>Question Bank helps you save and organize question images with their solutions in a structured way. Create subjects, chapters, and maintain a clean library of your study materials.</p>
+               
+                    <img src="img1.png" alt="Application Screenshot" class="img" >
+                    <div style="position: absolute;border-radius: 10%; max-width: 20%; height: auto; background: linear-gradient(45deg, rgba(138, 43, 226, 0.7), rgba(0, 191, 255, 0.7)); filter: blur(15px); z-index: -1; box-shadow: 0 0 30px rgba(138, 43, 226, 0.8);"></div>
+                
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-title animated">
+            <h2>Get The Question-Bank App</h2>
+            <p>Contact us through the form below to get the application link</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-form animated">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp Number</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message (Optional)</label>
+                        <textarea id="message" name="message" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="security-note">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Your information is safe and secured. We respect your privacy and will never share your data with third parties.</p>
+                    </div>
+                    <button type="submit" class="submit-btn">Get App Link</button>
+                </form>
+            </div>
+            <div class="contact-info animated">
+                <span class="support-badge"><i class="fas fa-headset"></i> 24/7 Support Available</span>
+                <h3>We're here for you!</h3>
+                <p>Contact us through this form to get access to the Question-Bank application. We'll send you the download link and setup instructions.</p>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4>Quick Response</h4>
+                        <p>We will get back to you within 8 hours on WhatsApp and Gmail.</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <h4>Secure Process</h4>
+                        <p>Your data is encrypted and secured. We prioritize your privacy and security.</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div>
+                        <h4>Dedicated Support</h4>
+                        <p>Facing any issues? Our support team is always ready to help you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title animated">
+                <h2>Simple & Powerful Features</h2>
+                <p>Everything you need to organize your study materials effectively</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="feature-title">Organized Structure</h3>
+                    <p>Create multiple subjects and chapters to keep your questions perfectly organized.</p>
+                    
+                </div>
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="feature-title">Question & Solution Pairs</h3>
+                    <p>Easily save question images with their corresponding solution images in one place.</p>
+                </div>
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-title">Quick Access</h3>
+                    <p>Find your saved questions instantly with our well-organized structure and search feature.</p>
+                </div>
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile Friendly</h3>
+                    <p>Access your question bank on your smartphone anytime, anywhere.</p>
+                </div>
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="feature-title">Secure Storage</h3>
+                    <p>Your study materials are securely stored and accessible only to you.</p>
+                </div>
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p>Our dedicated support team is always ready to help with any questions or issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title animated">
+                <h2>How Question Bank Works</h2>
+                <p>Simple steps to organize your study materials</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-card animated">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-folder-plus"></i>
+                    </div>
+                    <h3>Create Subjects</h3>
+                    <p>Set up different subjects for your courses or areas of study.</p>
+                </div>
+                <div class="step-card animated">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Add Chapters</h3>
+                    <p>Organize each subject into specific chapters or topics.</p>
+                </div>
+                <div class="step-card animated">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Save Question & Solution pair</h3>
+                    <p>Capture or upload question and solution images to the appropriate chapter.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title animated">
+                <h2>Simple Pricing</h2>
+                <p>Choose the plan that works best for you</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card animated popular">
+                    <h3 class="plan-name">Monthly</h3>
+                    <div class="price">₹21 <span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>10 days free trial</li>
+                        <li>Unlimited subjects & chapters</li>
+                        <li>Question-solution pairing</li> 
+                        <li>24/7 customer support</li>
+                        <li>Cancel anytime</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card animated">
+                    <h3 class="plan-name">Annual</h3>
+                    <div class="price">₹210 <span>/year</span></div>
+                    <ul class="pricing-features">
+                        <li>All monthly features</li>
+                        <li>Save ₹42 compared to monthly</li>
+                        <li>Priority customer support</li>
+                        <li>Image enhancement tools</li>
+                        <li>Higher storage capacity</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card animated popular">
+                    <h3 class="plan-name">Lifetime</h3>
+                    <div class="price">₹300 <span>/once</span></div>
+                    <ul class="pricing-features">
+                        <li>All annual features</li>
+                        <li>Lifetime updates</li>
+                        <li>Premium support</li>
+                        <li>All future features</li>
+                        <li>Best long-term value</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   
+
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">Question-Bank</div>
+            <p class="copyright">© 2025 Question-Bank. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Success Modal -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <i class="fas fa-check-circle success-icon"></i>
+        <h3>Form Submitted Successfully!</h3>
+        <p>Thank you for your interest in Question-Bank. We'll send you the app link within 8 hours on your WhatsApp and Gmail.</p>
+    </div>
+</div>
+
+<!-- Loader -->
+<script>
+    document.querySelectorAll('.cta-button').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        /* Send the email using EmailJS
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function() {
+                // Show success alert
+                alert("We will provide you the link soon through WhatsApp.");
+                // Show success modal (if you still want to keep the modal)
+                document.getElementById('successModal').style.display = 'flex';
+            }, function(error) {
+                console.log('FAILED...', error);
+            });*/
+    });
+
+
+
+    // EmailJS: Form submission handler
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+
+            // Send email using EmailJS
+            emailjs.sendForm('service_qpm3fhe', 'template_ls5eyos', this)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Show success message
+                    alert('Message sent successfully!');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Reset button
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                })
+                .catch(function(error) {
+                    console.error('FAILED...', error);
+                    
+                    // Show error message
+                    alert('Failed to send message. Please try again later.');
+                    
+                    // Reset button
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
+        });
+    }
+
+
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script> 
+</body>
+</html>
